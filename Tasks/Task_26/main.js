@@ -1,4 +1,7 @@
 
+const   FIRST_LETTER = 'м',
+        MAX_LENGTH = 10;
+
 function showVerticalMessage(incString) {
     let validString = (typeof incString === 'string');
 
@@ -9,20 +12,18 @@ function showVerticalMessage(incString) {
  
     let outString = incString.trim();
     
-    if (outString.length > 10) {
-        outString = outString.slice(0, 10);
+    if (outString.length > MAX_LENGTH) {
+        outString = outString.slice(0, MAX_LENGTH);
     }
 
-    if (outString[0] === 'м') {
-        outString = 'М' + outString.slice(1, outString.length);
+    if (outString[0] === FIRST_LETTER) {
+        outString = FIRST_LETTER.toUpperCase() + outString.slice(1, outString.length);
     }
     
     for (let i=0; i<outString.length; i++) {
-        console.log(outString[i] + '\n');
+        console.log(outString[i]);
     }
     console.log('\n');
-
-    return;
 }
 
 
