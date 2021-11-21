@@ -11,7 +11,7 @@ const   statusSet = [TODO, INDO, DONE];
 const   LOW = 'low',
         HI = 'high';
         
-const   prioritySet = [LOW, HI];
+const   prioritySet = [HI, LOW];
 
 const list = [ 
     { 
@@ -30,6 +30,7 @@ const list = [
 
     
 function checkValidTask(taskName, status, priority) {
+    
     let isValidTask = false;
     if (taskName === ANY) {
         isValidTask = true;
@@ -61,7 +62,9 @@ function checkValidTask(taskName, status, priority) {
 }
 
 function addTask(taskName, priority) {
+
     let isValid = checkValidTask(ANY , ANY, priority);
+    
     let isValidName = (typeof taskName === 'string');
     let isEmptyName = (taskName === '');
 
@@ -81,7 +84,9 @@ function addTask(taskName, priority) {
 }
     
 function deleteTask(taskName) {
+    
     let isValid = checkValidTask(taskName, ANY, ANY);
+
     if (!isValid) {
         console.log('Invalid parameters of task naming');
         return;
@@ -102,6 +107,7 @@ function deleteTask(taskName) {
 }
 
 function changeStatus(taskName, status, priority) {
+
     let isValid = checkValidTask(taskName, status, priority);
   
     if (!isValid) {
@@ -125,23 +131,39 @@ function changeStatus(taskName, status, priority) {
     }
 }
 
-                    // Just testing function
-function showAllTasks() {
-    console.log('The set of all tasks: ');
+function showListBy(groupBy) {
 
-    for (let key in list) {
-        console.log(list[key]);
+    const BY_STATUS = 'status',
+          BY_PRIORITY = 'priority'; 
+
+    const groupSet = [BY_STATUS, BY_PRIORITY];
+
+    if ( !groupSet.includes(groupBy) ) {
+        console.log('Invalid name of group type, gefault group will be "status"');
     }
-}
-                    // ---
 
-function showList() {
-    for (let key in statusSet) {
-        let status = statusSet[key];
+    let showTypeSet,
+        showKeyName; 
+
+    switch (groupBy) {
+        case BY_PRIORITY:
+            showTypeSet = prioritySet;
+            showKeyName = 'priority';
+            break;
+         
+        case BY_STATUS:
+        default: 
+            showTypeSet = statusSet;
+            showKeyName = 'status';
+    }
+
+    for (let key in showTypeSet) {
+        
+        let status = showTypeSet[key];
         console.log(`${status}:`);
        
         let isEmpty = true;
-        list.filter( (item) => item.status === status )
+        list.filter( (item) => item[showKeyName] === status )
             .forEach( (item) => {
                 isEmpty = false;
                 console.log(`  ${item.name}`);
@@ -156,19 +178,19 @@ function showList() {
 
 //   --------------    Tests    ---------------
 
-showAllTasks();
 addTask('to go streem', 'hi');
 addTask('to go streem', 'high');
-showAllTasks();
 deleteTask('tes');
 deleteTask(23);
 deleteTask('test');
-showAllTasks();
 changeStatus('ururh', 'To DO', 'high');
 changeStatus('ururh', 'To DO', 'hih');
+showListBy();
 addTask('', 'high');
 changeStatus('create a post', 'Done', 'low');
-showAllTasks();
-showList();
+showListBy('prioritY');
+changeStatus('create a post', 'Done', 'high');
+showListBy('priority');
+showListBy('status');
 
 
