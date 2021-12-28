@@ -9,4 +9,4 @@ latest knowledges. First time, i wont to redact these cases - but...
 
 I deside that it's will be better don't touch them. Such i can see,
 how are going changes in my expierience and code style. For me 
-personale and all other viewvers.
+personale and all other viewers.
