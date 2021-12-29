@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>To-Do</title>
+</head>
+<body>
+    <div class="container" >
+
+        <div class="hi_zone">
+            <div class="hi_title">HIGH</div>
+            <div class="hi_input">
+                <input id="hi_task_input" placeholder="Добавить важных дел">
+                <input class="add_task_icon" type="image" src="./img/add.svg">
+            </div>
+        </div>
+
+        <div class="lo_zone">
+            <div class="lo_title">LOW</div>
+            <div class="lo_input">
+                <input id="lo_task_input" type="text" placeholder="Добавить">
+                <input class="add_task_icon" type="image" src="./img/add.svg">
+            </div>
+        </div>
+        
+    </div>
+
+    <script src="./view.js" type="module"></script>
+    <script src="./main.js" type="module"></script>
+    <script src="./init.js" type="module"></script>
+</body>
+</html>
